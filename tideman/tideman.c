@@ -162,17 +162,37 @@ void record_preferences(int ranks[])
 void add_pairs(void)
 {
     // TODO
+    // Loop through each candidate to get preferences value
     for (int i = 0; i < candidate_count; i++)
     {
-        pairs[]
+        int ioverj = 0;
+        int joveri = 0;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (i != j)
+            {
+                ioverj = preferences[i][j];
+                joveri = preferences[j][i];
+                if (ioverj > joveri)
+                {
+                    printf("%s over %s = %i | %s over %s = %i\n", candidates[i], candidates[j], ioverj, candidates[j], candidates[i], joveri);
+                    pair_count++;
+                    pairs[i].winner = i;
+                    pairs[i].loser = j;
+                }
+            }
+        }
     }
-    return;
 }
 
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
     // TODO
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("Pairs[%i]: W=%i, L=%i\n", i, pairs[i].winner, pairs[i].loser);
+    }
     return;
 }
 

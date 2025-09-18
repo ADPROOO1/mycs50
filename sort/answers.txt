@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: difference in sorted vs reversed runtime
+
+sort2 uses: merge sort
+
+How do you know?: fastest runtime in random50000.txt
+
+sort3 uses: selection sort
+
+How do you know?: slowest runtime, and runtime increases by n as the problem increases by n

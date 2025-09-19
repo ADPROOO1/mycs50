@@ -33,6 +33,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
+bool is_cycle(int pair_index);
 
 int main(int argc, string argv[])
 {
@@ -90,29 +91,6 @@ int main(int argc, string argv[])
         printf("\n");
     }
 
-    // // TEST CODE: REMOVE!
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //         printf("Pref[%i] Over[%i] = %i\n", i, j, preferences[i][j]);
-    //     }
-    // }
-
-    // TEST CODE: REMOVE
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     int n = 0;
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //         n += preferences[i][j];
-    //     }
-    //     scores[i] = n;
-    //     printf("Score[%i]\n", scores[i]);
-    // }
-
-
-
     add_pairs();
     sort_pairs();
     lock_pairs();
@@ -165,21 +143,15 @@ void add_pairs(void)
     // Loop through each candidate to get preferences value
     for (int i = 0; i < candidate_count; i++)
     {
-        int ioverj = 0;
-        int joveri = 0;
         for (int j = 0; j < candidate_count; j++)
         {
-            if (i != j)
+            int ioverj = preferences[i][j];
+            int joveri = preferences[j][i];
+            if (i != j && ioverj > joveri)
             {
-                ioverj = preferences[i][j];
-                joveri = preferences[j][i];
-                if (ioverj > joveri)
-                {
-                    printf("%s over %s = %i | %s over %s = %i\n", candidates[i], candidates[j], ioverj, candidates[j], candidates[i], joveri);
-                    pair_count++;
-                    pairs[i].winner = i;
-                    pairs[i].loser = j;
-                }
+                pairs[pair_count].winner = i;
+                pairs[pair_count].loser = j;
+                pair_count++;
             }
         }
     }
@@ -189,9 +161,38 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     // TODO
+    // Reverse-Bubble Sort
+    // While swap_counter is > 0, then execute for-loop
+    bool cycle = true;
+    while (cycle)
+    {
+        cycle = false;
+        // left_index should not reach pair_count
+        for (int left_index = 0; left_index < pair_count - 1; left_index++)
+        {
+            // right_index = next int of left_index
+            int right_index = left_index + 1;
+            // right > left, then store left in pocket and put store right's winner and loser as left pair index, then save put pocket's winner and loser to now vacant right
+            int left = preferences[pairs[left_index].winner][pairs[left_index].loser] - preferences[pairs[left_index].loser][pairs[left_index].winner];
+            int right = preferences[pairs[right_index].winner][pairs[right_index].loser] - preferences[pairs[right_index].loser][pairs[right_index].winner];
+            // if right > left
+            if (right > left)
+            {
+                // Store left in pocket (pair_count + 1)
+                pairs[pair_count + 1] = pairs[left_index];
+                // Put right to left
+                pairs[left_index] = pairs[right_index];
+                // Get pocket by right
+                pairs[right_index] = pairs[pair_count + 1];
+                // Increment swap_counter
+                cycle = true;
+            }
+        }
+    }
     for (int i = 0; i < pair_count; i++)
     {
-        printf("Pairs[%i]: W=%i, L=%i\n", i, pairs[i].winner, pairs[i].loser);
+        int diff = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
+        printf("Pairs%i = %i\n", i, diff);
     }
     return;
 }
@@ -200,6 +201,13 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     // TODO
+    for (int i = 0; i < pair_count; i++)
+    {
+        if(!is_cycle(i))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
     return;
 }
 
@@ -208,4 +216,35 @@ void print_winner(void)
 {
     // TODO
     return;
+}
+
+// returns if locked pairs returns in a cycle
+bool is_cycle(int pair_index)
+{
+    bool result = false;
+
+    int start = pairs[pair_index].winner;
+
+    int i = pairs[pair_index].winner;
+    int j = pairs[pair_index].loser;
+    int  looper = 1;
+    while (looper)
+    {
+        i = j;
+        for (int k = 0; k < pair_count; k++)
+        {
+            if (locked[i][k] == true)
+            {
+                j = k;
+                break;
+            }
+        }
+        if (locked[i][j] == false || j == start)
+        {
+            looper = 0;
+            result = (j == start);
+        }
+        // printf("Locked[%i] [%i]\n", i, j);
+    }
+    return result;
 }

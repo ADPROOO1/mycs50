@@ -33,7 +33,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-bool is_cycle(int pair_index);
+bool is_cycle(int winner, int loser);
 
 int main(int argc, string argv[])
 {
@@ -203,7 +203,7 @@ void lock_pairs(void)
     // TODO
     for (int i = 0; i < pair_count; i++)
     {
-        if(!is_cycle(i))
+        if (!is_cycle(pairs[i].winner, pairs[i].loser))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
@@ -219,32 +219,25 @@ void print_winner(void)
 }
 
 // returns if locked pairs returns in a cycle
-bool is_cycle(int pair_index)
+bool is_cycle(int start, int loser)
 {
-    bool result = false;
-
-    int start = pairs[pair_index].winner;
-
-    int i = pairs[pair_index].winner;
-    int j = pairs[pair_index].loser;
-    int  looper = 1;
-    while (looper)
+    // base case
+    if (loser == start)
     {
-        i = j;
-        for (int k = 0; k < pair_count; k++)
+        return true;
+    }
+
+    // Recurse
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
         {
-            if (locked[i][k] == true)
+            if (is_cycle(start, i))
             {
-                j = k;
-                break;
+                return true;
             }
         }
-        if (locked[i][j] == false || j == start)
-        {
-            looper = 0;
-            result = (j == start);
-        }
-        // printf("Locked[%i] [%i]\n", i, j);
     }
-    return result;
+    // If won't result a cycle
+    return false;
 }

@@ -235,7 +235,7 @@ void print_winner(void)
             highest = scores[0];
         }
 
-        if (i > 0 && scores[i] > 0 && scores[i] > scores[i - 1])
+        if (i > 0 && scores[i] > 0 && scores[i] < scores[i - 1])
         {
             highest = scores[i];
         }

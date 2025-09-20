@@ -215,45 +215,7 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
-    bool winners[candidate_count];
-    int scores[candidate_count];
-    for (int i = 0; i < candidate_count; i++)
-    {
-        scores[i] = 0;
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j])
-            {
-                scores[i] = candidate_count;
-            }
-        }
-    }
-    // get candidates scores
-    int highest = 0;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j])
-            {
-                scores[j]--;
-            }
-        }
-        // printf("Scores[%i] = %i\n", i, scores[i]);
-        if (i > 0 && scores[i] > 0 && scores[i] < scores[i - 1])
-        {
-            highest = scores[i];
-        }
-    }
-
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (scores[i] > 0 && scores[i] == highest)
-        {
-            printf("%s\n", candidates[i]);
-        }
-    }
-
+    
     return;
 }
 

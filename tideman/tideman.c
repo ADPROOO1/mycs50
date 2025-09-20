@@ -221,7 +221,7 @@ void print_winner(void)
     int highest = 0;
     for (int i = 0; i < candidate_count; i++)
     {
-        scores[i] = 0;
+        scores[i] = 100;
         for (int j = 0; j < candidate_count; j++)
         {
             if (locked[i][j])

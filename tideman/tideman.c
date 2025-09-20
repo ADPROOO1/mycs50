@@ -270,7 +270,7 @@ void print_winner(void)
         }
     }
 
-    printf("MaxScore = %i\n", max_score);
+    // printf("MaxScore = %i\n", max_score);
 
     // Print Winning Candidates
     for (int i = 0; i < candidate_count; i++)

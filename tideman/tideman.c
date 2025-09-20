@@ -222,6 +222,11 @@ void print_winner(void)
     } status;
     status winning_candidates[candidate_count];
 
+    for (int i = 0; i < candidate_count; i++)
+    {
+        winning_candidates[i].score = 0;
+    }
+
     // Get all candidates
     for (int i = 0; i < candidate_count; i++)
     {

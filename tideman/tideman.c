@@ -230,8 +230,20 @@ void print_winner(void)
             }
         }
         printf("Scores[%i] = %i\n", i, scores[i]);
-        if (scores[i] )
+        if (scores[i] > 0 && scores[i] > scores[i - 1])
+        {
+            highest = scores[i];
+        }
     }
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (scores[i] == highest)
+        {
+            printf("%s\n", candidates[i]);
+        }
+    }
+
     return;
 }
 

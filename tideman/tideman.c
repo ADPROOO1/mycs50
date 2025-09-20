@@ -228,18 +228,6 @@ void print_winner(void)
         winning_candidates[i].winner = false;
     }
 
-    // Get all candidates
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //         if (locked[i][j])
-    //         {
-    //             winning_candidates[i].score++;
-    //         }
-    //     }
-    // }
-
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)

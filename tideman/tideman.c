@@ -215,7 +215,13 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
-    
+    typedef struct
+    {
+        bool winner;
+    } status;
+    status winning_candidates[candidate_count];
+
+
     return;
 }
 

@@ -219,17 +219,24 @@ void print_winner(void)
     int scores[candidate_count];
     for (int i = 0; i < candidate_count)
     {
-        scores[i] = 
+        scores[i] = 0;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[i][j])
+            {
+                scores[i] = candidate_count;
+            }
+        }
     }
     // get candidates scores
-    int highest = 0;
+    int lowest = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
             if (locked[i][j])
             {
-                scores[i]++;
+                scores[j]--;
             }
         }
         // printf("Scores[%i] = %i\n", i, scores[i]);

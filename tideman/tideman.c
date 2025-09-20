@@ -235,6 +235,12 @@ void print_winner(void)
             if (locked[i][j])
             {
                 winning_candidates[i].score++;
+                {
+                    if (winning_candidates[j].score > 0)
+                    {
+                        winning_candidates[j].score--;
+                    }
+                }
             }
         }
     }

@@ -234,9 +234,14 @@ void print_winner(void)
         {
             if (locked[i][j])
             {
-                winning_candidates[i]
+                winning_candidates[i].score++;
             }
         }
+    }
+
+    for (int i = 0; i < candidate_count; i++)
+    {
+        printf("WinningCand[%i] = %i\n", i, winning_candidates[i].score);
     }
 
     return;

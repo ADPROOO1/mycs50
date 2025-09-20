@@ -215,7 +215,8 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
-    int winners[candidate_count]
+    bool winners[candidate_count];
+    int scores[candidate_count];
     return;
 }
 

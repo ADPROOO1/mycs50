@@ -228,9 +228,8 @@ void print_winner(void)
                 scores[i]++;
             }
         }
+        printf("Scores[%i] = %i\n", i, scores[i]);
     }
-
-    for
     return;
 }
 

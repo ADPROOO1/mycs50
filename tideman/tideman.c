@@ -229,16 +229,16 @@ void print_winner(void)
     }
 
     // Get all candidates
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[i][j])
-            {
-                winning_candidates[i].score++;
-            }
-        }
-    }
+    // for (int i = 0; i < candidate_count; i++)
+    // {
+    //     for (int j = 0; j < candidate_count; j++)
+    //     {
+    //         if (locked[i][j])
+    //         {
+    //             winning_candidates[i].score++;
+    //         }
+    //     }
+    // }
 
     for (int i = 0; i < candidate_count; i++)
     {
@@ -270,7 +270,7 @@ void print_winner(void)
         }
     }
 
-    // printf("MaxScore = %i\n", max_score);
+    printf("MaxScore = %i\n", max_score);
 
     // Print Winning Candidates
     for (int i = 0; i < candidate_count; i++)

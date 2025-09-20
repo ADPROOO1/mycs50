@@ -218,6 +218,7 @@ void print_winner(void)
     bool winners[candidate_count];
     int scores[candidate_count];
     // get candidates scores
+    int highest = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         scores[i] = 0;
@@ -229,6 +230,7 @@ void print_winner(void)
             }
         }
         printf("Scores[%i] = %i\n", i, scores[i]);
+        if (scores[i] )
     }
     return;
 }

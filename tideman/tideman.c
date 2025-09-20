@@ -218,7 +218,10 @@ void print_winner(void)
     bool winners[candidate_count];
     int scores[candidate_count];
     // get candidates scores
-    for (int i )
+    for (int i = 0; i < candidate_count; i++)
+    {
+        
+    }
 
     for
     return;

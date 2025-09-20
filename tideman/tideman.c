@@ -230,6 +230,11 @@ void print_winner(void)
             }
         }
         printf("Scores[%i] = %i\n", i, scores[i]);
+        if (i == 0)
+        {
+            highest = scores[0];
+        }
+
         if (i > 0 && scores[i] > 0 && scores[i] > scores[i - 1])
         {
             highest = scores[i];

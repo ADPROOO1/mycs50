@@ -192,7 +192,7 @@ void sort_pairs(void)
     for (int i = 0; i < pair_count; i++)
     {
         int diff = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
-        printf("Pairs%i = %i\n", i, diff);
+        // printf("Pairs%i = %i\n", i, diff);
     }
     return;
 }
@@ -229,7 +229,7 @@ void print_winner(void)
                 scores[i]++;
             }
         }
-        printf("Scores[%i] = %i\n", i, scores[i]);
+        // printf("Scores[%i] = %i\n", i, scores[i]);
         if (i == 0)
         {
             highest = scores[0];

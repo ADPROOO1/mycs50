@@ -217,6 +217,10 @@ void print_winner(void)
     // TODO
     bool winners[candidate_count];
     int scores[candidate_count];
+    // get candidates scores
+    for (int i )
+
+    for
     return;
 }
 

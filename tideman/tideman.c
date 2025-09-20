@@ -225,6 +225,7 @@ void print_winner(void)
     for (int i = 0; i < candidate_count; i++)
     {
         winning_candidates[i].score = 0;
+        winning_candidates[i].winner = false;
     }
 
     // Get all candidates
@@ -250,9 +251,34 @@ void print_winner(void)
         }
     }
 
+    // Get Max Score
+    int max_score = winning_candidates[0].score;
+    for (int i = 1; i < candidate_count; i++)
+    {
+        if (winning_candidates[i].score > winning_candidates[i - 1].score)
+        {
+            max_score = winning_candidates[i].score;
+        }
+    }
+
+    // Change Winning Cands Winner to True if Score == Max
     for (int i = 0; i < candidate_count; i++)
     {
-        printf("WinningCand[%i] = %i\n", i, winning_candidates[i].score);
+        if (winning_candidates[i].score == max_score)
+        {
+            winning_candidates[i].winner = true;
+        }
+    }
+
+    // printf("MaxScore = %i\n", max_score);
+
+    // Print Winning Candidates
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (winning_candidates[i].winner)
+        {
+            printf("%s\n", candidates[i]);
+        }
     }
 
     return;

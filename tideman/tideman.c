@@ -217,7 +217,7 @@ void print_winner(void)
     // TODO
     bool winners[candidate_count];
     int scores[candidate_count];
-    for (int i = 0; i < candidate_count)
+    for (int i = 0; i < candidate_count; i++)
     {
         scores[i] = 0;
         for (int j = 0; j < candidate_count; j++)
@@ -229,7 +229,7 @@ void print_winner(void)
         }
     }
     // get candidates scores
-    int lowest = 0;
+    int highest = 0;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -240,11 +240,6 @@ void print_winner(void)
             }
         }
         // printf("Scores[%i] = %i\n", i, scores[i]);
-        if (i == 0)
-        {
-            highest = scores[0];
-        }
-
         if (i > 0 && scores[i] > 0 && scores[i] < scores[i - 1])
         {
             highest = scores[i];
@@ -253,7 +248,7 @@ void print_winner(void)
 
     for (int i = 0; i < candidate_count; i++)
     {
-        if (scores[i] == highest)
+        if (scores[i] > 0 && scores[i] == highest)
         {
             printf("%s\n", candidates[i]);
         }

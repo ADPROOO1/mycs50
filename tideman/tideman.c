@@ -217,10 +217,22 @@ void print_winner(void)
     // TODO
     typedef struct
     {
+        int score;
         bool winner;
     } status;
     status winning_candidates[candidate_count];
 
+    // Get all candidates
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[i][j])
+            {
+                winning_candidates[i]
+            }
+        }
+    }
 
     return;
 }

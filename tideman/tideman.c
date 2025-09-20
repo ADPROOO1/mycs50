@@ -216,11 +216,17 @@ void print_winner(void)
 {
     // TODO
     bool winners[candidate_count];
-    int scores[candidate_count];
+    int scores;
     // get candidates scores
     for (int i = 0; i < candidate_count; i++)
     {
-        
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[i][j])
+            {
+                scores[i]
+            }
+        }
     }
 
     for
